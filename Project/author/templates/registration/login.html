@@ -1,0 +1,39 @@
+{% extends 'author/index.html' %}
+
+{% block content %}
+
+
+{% if form.errors %}
+<p>There's something wrong with what you entered!</p>
+{% endif %}
+
+{% if next %}
+<p>Hey, you can't access that page.</p>
+{% endif %}
+<div class="container">
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <p>Username: {{ form.username }}</p>
+    <p>Password: {{ form.password }}</p>
+
+    <p><input type="submit" = value="login"></p> -->
+    <input type="hidden" name="next" value="{{ next }}">
+</form> 
+</div>
+<!-- <h1>{{title}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+
+    <button type="submit">Войти</button>
+</form> -->
+
+{% endblock %}

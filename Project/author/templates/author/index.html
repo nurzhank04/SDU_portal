@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'author/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'author/css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+    <title>The Index</title>
+</head>
+<body>
+
+  
+
+            {% if request.user.is_authenticated %}
+            <header class="header">
+                <img src="{% static 'author/img/logo2.png' %}" alt="" class="logo">
+                <span class="search"> 
+                    <button><img src="{% static 'author/img/search3.svg' %}" alt=""></button>
+                    <input type="text" name="search" placeholder="Search">
+                </span>
+       
+                <span class="profile">
+                    <img src="{% static 'author/img/ava.jpg' %}" alt="">
+                    <i>
+                        <h4>Alzhan Akhmetkerey</h4>
+                        <p>alzhikakh@gmail.com</p>
+                    </i>
+                    <button><img src="{% static 'author/img/down_arrow.svg' %}" alt=""></button>
+                </span>
+           </header>
+       
+           <section class="section container">
+       
+           <div class="action-category">
+               <span>
+                   <img src="{% static 'author/img/home.svg' %}" alt="">
+                   <a href="">Home page</a>
+               </span>
+       
+               <span>
+                   <img src="{% static 'author/img/transcript.png' %}" alt="">
+                   <a href="">Contact </a>
+               </span>
+       
+               <span>
+                   <img src="{% static 'author/img/graduate-hat.png' %}" alt="">
+                   <a href="">My Profile </a>
+               </span>
+       
+               <span>
+                   <img src="{% static 'author/img/info.svg' %}" alt="">
+                   <a href="">Contact </a>
+               </span>
+               
+               <span>
+                   <img src="{% static 'author/img/contact.svg' %}" alt="">
+                   <a href="">Contact </a>
+               </span>
+               
+       
+            </div>
+       
+                <div class="action-square">
+                    
+                   <div class="square-item">
+                       <span class="schedule">
+                             <img src="{% static 'author/img/calendar.png' %}" alt="">
+       
+                             <i>
+                                 <h2>Course Shedule</h2>
+                                 <p>See your timetable</p>
+                             </i>
+                       </span>
+       
+                       <span class="attendance">
+                           <img src="{% static 'author/img/user.png' %}" alt="">
+       
+                           <i>
+                               <h2>Attendance</h2>
+                               <p>Academic perfomance</p>
+                           </i>
+                     </span>
+                   </div>
+       
+                   <div class="square-item">
+                       <span class="payment">
+                             <img src="{% static 'author/img/valid.png' %}" alt="">
+       
+                             <i>
+                                 <h2>Payments</h2>
+                                 <p>Payments overdue</p>
+                             </i>
+                       </span>
+       
+                       <span class="grades">
+                           <img src="{% static 'author/img/favorite.png' %}" alt="">
+       
+                           <i>
+                               <h2>Grades</h2>
+                               <p>Check your grades!</p>
+                           </i>
+                     </span>
+                   </div>
+                </div>
+           </section>
+            {% else %}
+            <div class="container">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                
+                    <p>Username: {{ form.username }}</p>
+                    <p>Password: {{ form.password }}</p>
+                
+                    <p><input type="submit" = value="login"></p>
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form> 
+                </div>
+            {% endif %}
+  
+
+</body>
+</html>
